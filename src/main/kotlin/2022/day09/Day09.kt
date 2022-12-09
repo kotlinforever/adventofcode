@@ -34,11 +34,8 @@ class Day09 {
             listPart2.add(SnakePart("Snake-$i"))
         }
 
-        for (snake in listPart2) {
-            println(snake.name)
-        }
-
         for (line in lines) {
+            println(line)
             val direction = line.split(" ")[0]
             val steps = line.split(" ")[1].toInt()
             for (i in 0 until steps) {
@@ -47,6 +44,10 @@ class Day09 {
                     moveAfter(listPart2[j], listPart2[j + 1])
                 }
             }
+        }
+
+        for (snake in listPart2) {
+            println(snake)
         }
         println("\nsteps...: ${listPart2[noOfSnakes-1].steps.size}")
     }
