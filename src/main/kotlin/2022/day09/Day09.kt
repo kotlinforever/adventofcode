@@ -23,14 +23,14 @@ class Day09 {
     fun main() {
 //        part1("src/main/kotlin/2022/day09/input.txt")
 
-//        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/input")), 1)
-        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/test-part2.txt")), 9)
-//        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/input.txt")), 9)
+//        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/input")), 2) // 13
+//        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/test-part2.txt")), 10) // 36
+        part2(FileHandler().getLinesAsString(File("src/main/kotlin/2022/day09/input2.txt")), 10)
     }
 
     private fun part2(lines: MutableList<String>, noOfSnakes: Int) {
 
-        for (i in 0 until noOfSnakes + 1) {
+        for (i in 0 until noOfSnakes ) {
             listPart2.add(SnakePart("Snake-$i"))
         }
 
@@ -43,12 +43,21 @@ class Day09 {
             val steps = line.split(" ")[1].toInt()
             for (i in 0 until steps) {
                 move(direction, listPart2[0])
-                for (j in 0 until noOfSnakes) {
+                for (j in 0 until noOfSnakes-1) {
                     moveAfter(listPart2[j], listPart2[j + 1])
                 }
             }
         }
-        println("\nsteps...: ${listPart2[noOfSnakes].steps.size}")
+        println("\nsteps...: ${listPart2[noOfSnakes-1].steps.size}")
+    }
+
+    private fun print() {
+        for (snake in listPart2) {
+            for (i in 0..10) {
+                print(i)
+            }
+            println(snake.name)
+        }
     }
 
     private fun moveAfter(head: SnakePart, tail: SnakePart) {
